@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Results - News Now</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="static/styles.css" rel="stylesheet">
+</head>
+<body class="bg-white text-black transition-colors duration-300">
+  <!--Header Section-->
+  <header id="header" class="fixed top-0 left-0 w-full z-50 flex flex-col sm:flex-row justify-between items-center p-4 border-b bg-white md:flex-row justify-between items-center p-4 border-b bg-white">
+    <div class="flex items-center mb-2 sm:mb-0 md:mb-0">
+      <a href="/">
+        <img class="h-8 sm:h-10 md:h-10" src="static/images/logo.png" alt="Logo">
+      </a>
+    </div>
+    <div class="flex items-center space-x-2 mt-2 sm:mt-0 md:mt-0">
+      <form action="/search" method="get" class="flex items-center space-x-2">
+        <input type="text" name="q" placeholder="Search" class="p-2 border rounded-lg" required>
+        <button type="submit" class="bg-gray-300 rounded-lg p-2 flex items-center justify-center">
+          <img class="w-5 h-5 sm:w-6 sm:h-6 md:w-6 md:h-6" src="static/images/search_button.png" alt="Search">
+        </button>
+      </form>
+      
+      <button id="toggle-dark-mode" class="bg-gray-300 rounded-lg p-2 flex items-center justify-center">
+        <img id="icon" class="w-5 h-5 sm:w-6 sm:h-6 md:w-6 md:h-6" src="static/images/dark_mode.png" alt="Toggle Theme">
+      </button>
+    </div>
+  </header>
+
+  <!--Main Section-->
+  <main class="mt-28 p-4">
+    <section class="max-w-6xl mx-auto pb-8 mb-8">
+      <h2 class="text-3xl font-semibold mb-8 text-center">Search Results for "{{ query }}"</h2>
+      <div class="flex flex-wrap justify-center">
+        {% if articles %}
+          {% for article in articles %}
+            <article class="card w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 p-4">
+              <div class="p-6 border rounded-lg shadow-md bg-white h-full flex flex-col">
+                <img src="{{ article.get('urlToImage') }}" alt="{{ article.get('title') }}" class="mb-4 rounded-lg object-cover h-48 w-full">
+                <h3 class="text-xl font-semibold mb-2">{{ article.get('title') }}</h3>
+                <a href="{{ article.get('url') }}" class="text-red-600 hover:underline mt-4" target="_blank">Read more</a>
+              </div>
+            </article>
+          {% endfor %}
+        {% else %}
+          <p>No results found for your search.</p>
+        {% endif %}
+      </div>
+    </section>
+  </main>
+
+  <script src="static/scripts.js"></script>
+</body>
+</html>

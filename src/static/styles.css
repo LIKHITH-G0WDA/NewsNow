@@ -1,0 +1,41 @@
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+ 
+
+/*For dark mode*/
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+#header.dark-mode {
+  background-color: #1e1e1e;
+}
+
+.nav-link.dark-mode {
+  color: #b0b0b0;
+}
+
+.nav-link.dark-mode:hover {
+  color: #ff6f6f;
+}
+
+.card.dark-mode {
+  background-color: #121212;
+  color: #121212;
+}
+
+.card img.dark-mode {
+  border-color: #333;
+}
+
+.dark-mode input[type="text"] {
+  color: #171717; 
+}
+
+
