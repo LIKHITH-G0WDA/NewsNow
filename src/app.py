@@ -1,5 +1,6 @@
 from flask import Flask, render_template, jsonify, url_for, redirect, request
 import requests
+import os
 
 api_key="92b1ffbe2e0b485cbd3411a9a08decf2"
 
@@ -72,5 +73,5 @@ def search():
 
 
 if __name__=='__main__':
-  app.run()
+  app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
 
